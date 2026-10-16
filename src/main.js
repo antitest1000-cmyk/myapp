@@ -1,5 +1,5 @@
-/* ===================================================================
-   ClearCut – Background Remover | Official Web App Script
+﻿/* ===================================================================
+   ClearCut â€“ Background Remover | Official Web App Script
    Features:
    - Sticky Glass Navbar & Mobile Drawer
    - Interactive Before/After Comparison Slider (Touch + Drag + Presets)
@@ -81,7 +81,7 @@ const GALLERY_SCREENS = {
 
         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
           <button style="background: linear-gradient(135deg, #2F6BFF, #7B3FF2); color: #fff; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(47,107,255,0.4);">+ Choose from Gallery</button>
-          <button style="background: rgba(255,255,255,0.06); color: #fff; padding: 10px; border-radius: 14px; font-size: 0.82rem;">📷 Open Camera</button>
+          <button style="background: rgba(255,255,255,0.06); color: #fff; padding: 10px; border-radius: 14px; font-size: 0.82rem;">ðŸ“· Open Camera</button>
         </div>
 
         <span style="font-size: 0.75rem; color: #94A3B8; font-weight: 700; margin-bottom: 8px;">Recent Edits</span>
@@ -98,7 +98,7 @@ const GALLERY_SCREENS = {
         </div>
 
         <div style="margin-top: auto; padding: 8px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center; font-size: 0.7rem; color: #34D399;">
-          🛡️ 100% On-Device AI • No Photos Uploaded
+          ðŸ›¡ï¸ 100% On-Device AI â€¢ No Photos Uploaded
         </div>
       </div>
     `
@@ -146,7 +146,7 @@ const GALLERY_SCREENS = {
 
         <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Removing background...</h4>
         <p style="font-size: 0.78rem; color: #94A3B8; max-width: 220px;">This may take a few seconds. Powered by on-device AI.</p>
-        <span style="font-size: 0.7rem; color: #10B981; margin-top: 16px;">⚡ Offline • Zero network requests</span>
+        <span style="font-size: 0.7rem; color: #10B981; margin-top: 16px;">âš¡ Offline â€¢ Zero network requests</span>
       </div>
     `
   },
@@ -157,7 +157,7 @@ const GALLERY_SCREENS = {
       <div style="flex: 1; display: flex; flex-direction: column; padding: 14px;">
         <div class="app-topbar">
           <span style="font-size: 0.85rem; font-weight: 700;">Editor</span>
-          <span style="font-size: 0.75rem; color: #60A5FA;">Undo ↶</span>
+          <span style="font-size: 0.75rem; color: #60A5FA;">Undo â†¶</span>
         </div>
 
         <div style="flex: 1; border-radius: 16px; overflow: hidden; position: relative;" class="checkerboard-pattern">
@@ -165,10 +165,10 @@ const GALLERY_SCREENS = {
         </div>
 
         <div style="display: flex; justify-content: space-around; margin-top: 14px; padding: 10px 0; background: rgba(0,0,0,0.4); border-radius: 12px; font-size: 0.72rem; color: #94A3B8;">
-          <span style="color: #60A5FA; font-weight: 700;">🎨 Background</span>
-          <span>⚡ Adjust</span>
-          <span>✂️ Crop</span>
-          <span>✨ More</span>
+          <span style="color: #60A5FA; font-weight: 700;">ðŸŽ¨ Background</span>
+          <span>âš¡ Adjust</span>
+          <span>âœ‚ï¸ Crop</span>
+          <span>âœ¨ More</span>
         </div>
       </div>
     `
@@ -223,7 +223,7 @@ const GALLERY_SCREENS = {
         </div>
 
         <div style="background: rgba(16, 185, 129, 0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.74rem; color: #34D399; margin-bottom: 12px; text-align: center;">
-          ✓ Best Quality Setting (Full 4K Resolution)
+          âœ“ Best Quality Setting (Full 4K Resolution)
         </div>
 
         <div style="display: flex; gap: 8px;">
@@ -305,7 +305,7 @@ const GALLERY_SCREENS = {
 
         <div style="margin-top: auto; text-align: center; font-size: 0.7rem; color: #64748B;">
           ClearCut v1.2.0 (Build 42)<br>
-          "Free • Offline • On Your Device"
+          "Free â€¢ Offline â€¢ On Your Device"
         </div>
       </div>
     `
@@ -313,7 +313,7 @@ const GALLERY_SCREENS = {
 };
 
 // ===================================================================
-// Skiper UI (@skiper-ui) Interactions — defined first to prevent ReferenceError
+// Skiper UI (@skiper-ui) Interactions â€” defined first to prevent ReferenceError
 // ===================================================================
 function initSkiperGallery() {
   const cards = document.querySelectorAll('.skiper-expand-card');
@@ -731,7 +731,7 @@ function initPlayground() {
           link.href = img.src;
         }
         link.click();
-        showToast('✓ Cutout exported successfully! Full HD quality.');
+        showToast('âœ“ Cutout exported successfully! Full HD quality.');
       }, 500);
     });
   }
@@ -944,8 +944,8 @@ function initModals() {
   if (confirmPlayStoreBtn) {
     confirmPlayStoreBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      // App is coming soon on Play Store – let user know & offer direct APK
-      showToast('🚀 Coming soon on Google Play! Use the direct download for now.');
+      // App is coming soon on Play Store â€“ let user know & offer direct APK
+      showToast('ðŸš€ Coming soon on Google Play! Use the direct download for now.');
     });
   }
 
@@ -953,7 +953,7 @@ function initModals() {
     confirmApkDownloadBtn.addEventListener('click', () => {
       // Native <a download> handles the actual file download
       confetti({ particleCount: 70, spread: 80 });
-      showToast('✓ Download started! Allow installs from unknown sources if prompted.');
+      showToast('âœ“ Download started! Allow installs from unknown sources if prompted.');
       closeAllModals();
     });
   }
@@ -972,4 +972,5 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 4000);
 }
+
 
