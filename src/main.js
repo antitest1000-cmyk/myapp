@@ -313,6 +313,24 @@ const GALLERY_SCREENS = {
 };
 
 // ===================================================================
+// Skiper UI (@skiper-ui) Interactions — defined first to prevent ReferenceError
+// ===================================================================
+function initSkiperGallery() {
+  const cards = document.querySelectorAll('.skiper-expand-card');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const activate = () => {
+      cards.forEach((c) => c.classList.remove('active'));
+      card.classList.add('active');
+    };
+    card.addEventListener('mouseenter', activate);
+    card.addEventListener('focus', activate);
+    card.addEventListener('click', activate);
+  });
+}
+
+// ===================================================================
 // Initialization on DOM Load
 // ===================================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -369,9 +387,6 @@ function initHeroSlider() {
   const slider = document.getElementById('heroSlider');
   const handle = document.getElementById('heroSliderHandle');
   const layerBefore = document.getElementById('heroLayerBefore');
-  const presetTabs = document.getElementById('heroPresetTabs');
-  const heroCutoutImg = document.getElementById('heroCutoutImg');
-  const heroOriginalImg = document.getElementById('heroOriginalImg');
 
   if (!slider || !handle || !layerBefore) return;
 
@@ -430,24 +445,6 @@ function initHeroSlider() {
       updateSlider(sliderPos + 5);
     }
   });
-
-  // Preset Switcher Tabs in Hero
-  if (presetTabs) {
-    presetTabs.querySelectorAll('.preset-tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        presetTabs.querySelectorAll('.preset-tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const presetKey = btn.dataset.preset;
-        const preset = PRESETS[presetKey];
-        if (preset) {
-          heroOriginalImg.src = preset.src;
-          heroCutoutImg.src = preset.src;
-          heroCutoutImg.style.clipPath = preset.mask;
-        }
-      });
-    });
-  }
 }
 
 // ===================================================================
@@ -947,17 +944,16 @@ function initModals() {
   if (confirmPlayStoreBtn) {
     confirmPlayStoreBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      confetti({ particleCount: 70, spread: 80 });
-      showToast('Opening ClearCut on Google Play Store...');
-      closeAllModals();
+      // App is coming soon on Play Store – let user know & offer direct APK
+      showToast('🚀 Coming soon on Google Play! Use the direct download for now.');
     });
   }
 
   if (confirmApkDownloadBtn) {
-    confirmApkDownloadBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+    confirmApkDownloadBtn.addEventListener('click', () => {
+      // Native <a download> handles the actual file download
       confetti({ particleCount: 70, spread: 80 });
-      showToast('Downloading ClearCut v1.2.0 APK (24.8MB)...');
+      showToast('✓ Download started! Allow installs from unknown sources if prompted.');
       closeAllModals();
     });
   }
@@ -977,20 +973,3 @@ function showToast(message) {
   }, 4000);
 }
 
-// ===================================================================
-// Skiper UI (@skiper-ui) Interactions
-// ===================================================================
-function initSkiperGallery() {
-  const cards = document.querySelectorAll('.skiper-expand-card');
-  if (!cards.length) return;
-
-  cards.forEach((card) => {
-    const activate = () => {
-      cards.forEach((c) => c.classList.remove('active'));
-      card.classList.add('active');
-    };
-    card.addEventListener('mouseenter', activate);
-    card.addEventListener('focus', activate);
-    card.addEventListener('click', activate);
-  });
-}

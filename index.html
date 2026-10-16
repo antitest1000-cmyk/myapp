@@ -165,14 +165,32 @@
 
             <div class="hero-actions">
               <a href="#download" class="btn-playstore open-download-modal" id="heroPlaystoreBtn">
-                <svg viewBox="0 0 512 512">
-                  <path fill="#00E6FF" d="M32.5 32.5L256 256 32.5 479.5c-4.1-4.1-6.5-10-6.5-16.5V49c0-6.5 2.4-12.4 6.5-16.5z"/>
-                  <path fill="#00F076" d="M352 160L256 256l96 96 64-37c18.2-10.5 18.2-27.5 0-38l-64-117z"/>
-                  <path fill="#FF3A44" d="M256 256L32.5 479.5c6.5 6.5 16.5 8 26.5 2.5l293-170L256 256z"/>
-                  <path fill="#FFAE00" d="M352 160L59 2c-10-5.5-20-4-26.5 2.5L256 256l96-96z"/>
+                <!-- Official Google Play Badge -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <linearGradient id="gp-a" x1="60.9" y1=".5" x2="60.9" y2="495.2" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#00a0ff"/><stop offset=".007" stop-color="#00a1ff"/>
+                    <stop offset=".26" stop-color="#00beff"/><stop offset=".512" stop-color="#00d2ff"/>
+                    <stop offset=".76" stop-color="#00dfff"/><stop offset="1" stop-color="#00e3ff"/>
+                  </linearGradient>
+                  <linearGradient id="gp-b" x1="167.5" y1="247.9" x2="-16.3" y2="247.9" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#ffe000"/><stop offset=".409" stop-color="#ffbd00"/>
+                    <stop offset=".775" stop-color="orange"/><stop offset="1" stop-color="#ff9c00"/>
+                  </linearGradient>
+                  <linearGradient id="gp-c" x1="130.6" y1="210.8" x2="-15" y2="64.8" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#ff3a44"/><stop offset="1" stop-color="#c31162"/>
+                  </linearGradient>
+                  <linearGradient id="gp-d" x1="-8.1" y1="299.8" x2="51.5" y2="241.2" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#32a071"/><stop offset=".069" stop-color="#2da771"/>
+                    <stop offset=".476" stop-color="#15cf74"/><stop offset=".801" stop-color="#06e775"/>
+                    <stop offset="1" stop-color="#00f076"/>
+                  </linearGradient>
+                  <path d="M27.2 19.7C20.4 26.9 16.4 38 16.4 52.6v406.7c0 14.6 4 25.7 10.9 32.8l1.7 1.6 227.8-227.8v-5.4L28.9 18.1l-1.7 1.6z" fill="url(#gp-a)"/>
+                  <path d="M333.3 342.8l-75.9-75.9v-5.4l75.9-75.9 1.7 1 89.9 51.1c25.7 14.6 25.7 38.4 0 53l-89.9 51.1-1.7 1z" fill="url(#gp-b)"/>
+                  <path d="M335 341.8L257.3 264 27.2 494.1c8.5 9 22.5 10.1 38.2 1.1l269.6-153.4" fill="url(#gp-c)"/>
+                  <path d="M335 170.2L65.4 16.8C49.7 7.7 35.7 8.9 27.2 17.9L257.3 248 335 170.2z" fill="url(#gp-d)"/>
                 </svg>
                 <div class="playstore-text">
-                  <span class="playstore-sub">Get it on</span>
+                  <span class="playstore-sub">Coming soon on</span>
                   <span class="playstore-main">Google Play</span>
                 </div>
               </a>
@@ -229,25 +247,22 @@
                   <span class="live-dot"></span>
                   <span>Interactive Cutout Preview</span>
                 </div>
-                <!-- Sample Tabs -->
-                <div class="hero-preset-tabs" id="heroPresetTabs">
-                  <button class="preset-tab-btn active" data-preset="portrait">Portrait</button>
-                  <button class="preset-tab-btn" data-preset="sneaker">Sneaker</button>
-                  <button class="preset-tab-btn" data-preset="dog">Pet</button>
-                  <button class="preset-tab-btn" data-preset="man">Headshot</button>
+                <div style="font-size: 0.78rem; color: #60A5FA; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  On-Device AI Result
                 </div>
               </div>
 
               <!-- Draggable Slider Container -->
               <div class="before-after-slider" id="heroSlider" role="slider" aria-label="Before and after background removal slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" tabindex="0">
-                <!-- Underneath: After (Cutout over Checkerboard) -->
+                <!-- Underneath: After (Real transparent PNG cutout over checkerboard) -->
                 <div class="slider-layer layer-after checkerboard-pattern" id="heroLayerAfter">
-                  <img src="/assets/portrait.jpg" alt="Transparent Cutout" class="cutout-subject-img" id="heroCutoutImg" style="clip-path: url(#portrait-mask);">
+                  <img src="/assets/slider/transparent.png" alt="Background Removed by ClearCut AI" class="cutout-subject-img" id="heroCutoutImg">
                 </div>
 
-                <!-- On Top: Before (Original Image with Full Background) -->
+                <!-- On Top: Before (Original photo with full background, clipped dynamically) -->
                 <div class="slider-layer layer-before" id="heroLayerBefore">
-                  <img src="/assets/portrait.jpg" alt="Original Photo with Background" id="heroOriginalImg">
+                  <img src="/assets/slider/non trasparent.jpg" alt="Original Photo with Background" id="heroOriginalImg">
                 </div>
 
                 <!-- Slider Divider Handle -->
@@ -264,7 +279,7 @@
               </div>
 
               <div class="slider-caption">
-                <span>Drag the handle horizontally to inspect edge precision</span>
+                <span>Drag the handle to see background removed</span>
                 <span style="color: #60A5FA; font-weight: 600;">✨ On-Device Cutout</span>
               </div>
             </div>
@@ -1200,14 +1215,32 @@
 
             <div style="display: flex; gap: 16px; flex-wrap: wrap;">
               <button class="btn-playstore open-download-modal">
-                <svg viewBox="0 0 512 512">
-                  <path fill="#00E6FF" d="M32.5 32.5L256 256 32.5 479.5c-4.1-4.1-6.5-10-6.5-16.5V49c0-6.5 2.4-12.4 6.5-16.5z"/>
-                  <path fill="#00F076" d="M352 160L256 256l96 96 64-37c18.2-10.5 18.2-27.5 0-38l-64-117z"/>
-                  <path fill="#FF3A44" d="M256 256L32.5 479.5c6.5 6.5 16.5 8 26.5 2.5l293-170L256 256z"/>
-                  <path fill="#FFAE00" d="M352 160L59 2c-10-5.5-20-4-26.5 2.5L256 256l96-96z"/>
+                <!-- Official Google Play Badge -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <linearGradient id="gp-a2" x1="60.9" y1=".5" x2="60.9" y2="495.2" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#00a0ff"/><stop offset=".007" stop-color="#00a1ff"/>
+                    <stop offset=".26" stop-color="#00beff"/><stop offset=".512" stop-color="#00d2ff"/>
+                    <stop offset=".76" stop-color="#00dfff"/><stop offset="1" stop-color="#00e3ff"/>
+                  </linearGradient>
+                  <linearGradient id="gp-b2" x1="167.5" y1="247.9" x2="-16.3" y2="247.9" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#ffe000"/><stop offset=".409" stop-color="#ffbd00"/>
+                    <stop offset=".775" stop-color="orange"/><stop offset="1" stop-color="#ff9c00"/>
+                  </linearGradient>
+                  <linearGradient id="gp-c2" x1="130.6" y1="210.8" x2="-15" y2="64.8" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#ff3a44"/><stop offset="1" stop-color="#c31162"/>
+                  </linearGradient>
+                  <linearGradient id="gp-d2" x1="-8.1" y1="299.8" x2="51.5" y2="241.2" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#32a071"/><stop offset=".069" stop-color="#2da771"/>
+                    <stop offset=".476" stop-color="#15cf74"/><stop offset=".801" stop-color="#06e775"/>
+                    <stop offset="1" stop-color="#00f076"/>
+                  </linearGradient>
+                  <path d="M27.2 19.7C20.4 26.9 16.4 38 16.4 52.6v406.7c0 14.6 4 25.7 10.9 32.8l1.7 1.6 227.8-227.8v-5.4L28.9 18.1l-1.7 1.6z" fill="url(#gp-a2)"/>
+                  <path d="M333.3 342.8l-75.9-75.9v-5.4l75.9-75.9 1.7 1 89.9 51.1c25.7 14.6 25.7 38.4 0 53l-89.9 51.1-1.7 1z" fill="url(#gp-b2)"/>
+                  <path d="M335 341.8L257.3 264 27.2 494.1c8.5 9 22.5 10.1 38.2 1.1l269.6-153.4" fill="url(#gp-c2)"/>
+                  <path d="M335 170.2L65.4 16.8C49.7 7.7 35.7 8.9 27.2 17.9L257.3 248 335 170.2z" fill="url(#gp-d2)"/>
                 </svg>
                 <div class="playstore-text">
-                  <span class="playstore-sub">Get it on</span>
+                  <span class="playstore-sub">Coming soon on</span>
                   <span class="playstore-main">Google Play</span>
                 </div>
               </button>
@@ -1480,52 +1513,62 @@
         <button class="modal-close-btn close-modal-btn" aria-label="Close dialog">&times;</button>
       </div>
       <div class="modal-body" style="text-align: center;">
-        <div style="width: 150px; height: 150px; margin: 0 auto 20px; background: #fff; padding: 10px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4);">
-          <svg viewBox="0 0 100 100" width="100%" height="100%">
-            <rect width="100" height="100" fill="#FFFFFF"/>
-            <rect x="10" y="10" width="24" height="24" fill="#050816"/>
-            <rect x="14" y="14" width="16" height="16" fill="#FFFFFF"/>
-            <rect x="18" y="18" width="8" height="8" fill="#050816"/>
-            <rect x="66" y="10" width="24" height="24" fill="#050816"/>
-            <rect x="70" y="14" width="16" height="16" fill="#FFFFFF"/>
-            <rect x="74" y="18" width="8" height="8" fill="#050816"/>
-            <rect x="10" y="66" width="24" height="24" fill="#050816"/>
-            <rect x="14" y="70" width="16" height="16" fill="#FFFFFF"/>
-            <rect x="18" y="74" width="8" height="8" fill="#050816"/>
-            <rect x="38" y="14" width="6" height="6" fill="#050816"/>
-            <rect x="48" y="18" width="6" height="6" fill="#050816"/>
-            <rect x="38" y="28" width="6" height="6" fill="#050816"/>
-            <rect x="48" y="38" width="6" height="6" fill="#050816"/>
-            <rect x="14" y="44" width="6" height="6" fill="#050816"/>
-            <rect x="24" y="48" width="6" height="6" fill="#050816"/>
-            <rect x="74" y="44" width="6" height="6" fill="#050816"/>
-            <rect x="84" y="48" width="6" height="6" fill="#050816"/>
-            <rect x="38" y="66" width="6" height="6" fill="#050816"/>
-            <rect x="48" y="74" width="6" height="6" fill="#050816"/>
-            <rect x="66" y="66" width="6" height="6" fill="#050816"/>
-            <rect x="78" y="78" width="6" height="6" fill="#050816"/>
+        <!-- Official Google Play Badge Large -->
+        <div style="margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; gap: 12px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="56" height="56">
+            <linearGradient id="gp-m1" x1="60.9" y1=".5" x2="60.9" y2="495.2" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#00a0ff"/><stop offset=".007" stop-color="#00a1ff"/>
+              <stop offset=".26" stop-color="#00beff"/><stop offset=".512" stop-color="#00d2ff"/>
+              <stop offset=".76" stop-color="#00dfff"/><stop offset="1" stop-color="#00e3ff"/>
+            </linearGradient>
+            <linearGradient id="gp-m2" x1="167.5" y1="247.9" x2="-16.3" y2="247.9" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#ffe000"/><stop offset=".409" stop-color="#ffbd00"/>
+              <stop offset=".775" stop-color="orange"/><stop offset="1" stop-color="#ff9c00"/>
+            </linearGradient>
+            <linearGradient id="gp-m3" x1="130.6" y1="210.8" x2="-15" y2="64.8" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#ff3a44"/><stop offset="1" stop-color="#c31162"/>
+            </linearGradient>
+            <linearGradient id="gp-m4" x1="-8.1" y1="299.8" x2="51.5" y2="241.2" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#32a071"/><stop offset=".069" stop-color="#2da771"/>
+              <stop offset=".476" stop-color="#15cf74"/><stop offset=".801" stop-color="#06e775"/>
+              <stop offset="1" stop-color="#00f076"/>
+            </linearGradient>
+            <path d="M27.2 19.7C20.4 26.9 16.4 38 16.4 52.6v406.7c0 14.6 4 25.7 10.9 32.8l1.7 1.6 227.8-227.8v-5.4L28.9 18.1l-1.7 1.6z" fill="url(#gp-m1)"/>
+            <path d="M333.3 342.8l-75.9-75.9v-5.4l75.9-75.9 1.7 1 89.9 51.1c25.7 14.6 25.7 38.4 0 53l-89.9 51.1-1.7 1z" fill="url(#gp-m2)"/>
+            <path d="M335 341.8L257.3 264 27.2 494.1c8.5 9 22.5 10.1 38.2 1.1l269.6-153.4" fill="url(#gp-m3)"/>
+            <path d="M335 170.2L65.4 16.8C49.7 7.7 35.7 8.9 27.2 17.9L257.3 248 335 170.2z" fill="url(#gp-m4)"/>
           </svg>
+          <div style="text-align: left;">
+            <div style="font-size: 0.75rem; color: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase;">Get it on</div>
+            <div style="font-size: 1.3rem; font-weight: 700; color: #fff; line-height: 1.2;">Google Play</div>
+            <div style="font-size: 0.7rem; margin-top: 2px; padding: 2px 8px; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.4); border-radius: 20px; color: #FBBF24; font-weight: 600; display: inline-block;">🕐 Coming Soon</div>
+          </div>
         </div>
 
-        <h4 style="margin-bottom: 6px;">Scan with Your Android Phone</h4>
+        <h4 style="margin-bottom: 6px;">Get ClearCut for Android</h4>
         <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 24px;">
-          Direct Google Play Store download or verified direct APK installation.
+          The app is coming soon to Google Play. Download the APK directly for free right now!
         </p>
 
         <div style="display: flex; flex-direction: column; gap: 12px;">
-          <a href="#" class="btn btn-primary btn-lg" id="confirmPlayStoreBtn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9V3z"/></svg>
-            <span>Open in Google Play Store</span>
-          </a>
-
-          <button class="btn btn-secondary btn-lg" id="confirmApkDownloadBtn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span>Download Direct APK (v1.2.0 • 24.8MB)</span>
+          <button class="btn btn-outline btn-lg" id="confirmPlayStoreBtn" style="border-color: rgba(251,191,36,0.4); color: #FBBF24; cursor: not-allowed; opacity: 0.7;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
+              <path d="M27.2 19.7C20.4 26.9 16.4 38 16.4 52.6v406.7c0 14.6 4 25.7 10.9 32.8l1.7 1.6 227.8-227.8v-5.4L28.9 18.1l-1.7 1.6z" fill="#00beff"/>
+              <path d="M333.3 342.8l-75.9-75.9v-5.4l75.9-75.9 1.7 1 89.9 51.1c25.7 14.6 25.7 38.4 0 53l-89.9 51.1-1.7 1z" fill="#ffbd00"/>
+              <path d="M335 341.8L257.3 264 27.2 494.1c8.5 9 22.5 10.1 38.2 1.1l269.6-153.4" fill="#ff3a44"/>
+              <path d="M335 170.2L65.4 16.8C49.7 7.7 35.7 8.9 27.2 17.9L257.3 248 335 170.2z" fill="#00f076"/>
+            </svg>
+            <span>🕐 Coming Soon on Google Play</span>
           </button>
+
+          <a href="https://sonbowfowiefwe.s3.filebase.io/ClearCut.apk" download="ClearCut.apk" class="btn btn-primary btn-lg" id="confirmApkDownloadBtn" style="text-decoration: none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>⬇️ Download APK Free (v1.2.0 • ~25MB)</span>
+          </a>
         </div>
 
         <div style="margin-top: 18px; font-size: 0.78rem; color: var(--text-muted);">
-          SHA-256: 8f4c82b1...32d9 • Free • No ads during edit
+          ✓ 100% Free &nbsp;•&nbsp; No account needed &nbsp;•&nbsp; Android 8.0+
         </div>
       </div>
     </div>
