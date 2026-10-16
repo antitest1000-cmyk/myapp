@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearCut – Free Offline Background Remover App for Android</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="ClearCut is a 100% free Android background remover app. No sign-up, works completely offline with on-device AI, zero watermark, and your photos never leave your device.">
+  <meta name="keywords" content="free background remover, remove background offline, background remover no sign up, Android background eraser, on device AI cutout, photo background transparent">
+  <meta name="author" content="ClearCut">
+  <meta name="theme-color" content="#050816">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clearcut.app/">
+  <meta property="og:title" content="ClearCut – Free Offline Background Remover App for Android">
+  <meta property="og:description" content="Remove image backgrounds in seconds on your phone with on-device AI. 100% Free • Offline • No Account • No Watermark.">
+  <meta property="og:image" content="/assets/logo.svg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://clearcut.app/">
+  <meta property="twitter:title" content="ClearCut – Free Offline Background Remover App for Android">
+  <meta property="twitter:description" content="Remove image backgrounds in seconds on your phone with on-device AI. 100% Free • Offline • No Account • No Watermark.">
+  <meta property="twitter:image" content="/assets/logo.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/src/style.css">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Schema.org SoftwareApplication JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ClearCut – Background Remover",
+    "operatingSystem": "Android",
+    "applicationCategory": "PhotographyApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free offline Android app that removes image backgrounds directly on the user's phone with on-device AI.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "18450"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Glowing Orbs -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+
+  <!-- Hidden SVG Clip-Paths for On-Device Subject Isolation -->
+  <svg width="0" height="0" class="svg-defs" style="position: absolute; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <!-- Portrait Woman Silhouette -->
+      <clipPath id="portrait-mask" clipPathUnits="objectBoundingBox">
+        <path d="M 0.05 1.0 C 0.05 0.88 0.12 0.76 0.18 0.62 C 0.22 0.52 0.28 0.44 0.33 0.38 C 0.29 0.30 0.30 0.18 0.35 0.08 C 0.40 0.02 0.50 0.01 0.60 0.03 C 0.68 0.07 0.73 0.18 0.70 0.28 C 0.72 0.35 0.70 0.42 0.68 0.48 C 0.73 0.55 0.80 0.64 0.86 0.76 C 0.91 0.86 0.95 0.94 0.95 1.0 Z" />
+      </clipPath>
+
+      <!-- Sneaker Silhouette -->
+      <clipPath id="sneaker-mask" clipPathUnits="objectBoundingBox">
+        <path d="M 0.10 0.52 C 0.06 0.42 0.12 0.32 0.22 0.28 C 0.32 0.24 0.42 0.25 0.52 0.34 C 0.64 0.42 0.76 0.48 0.86 0.52 C 0.94 0.56 0.96 0.64 0.92 0.70 C 0.86 0.78 0.74 0.80 0.60 0.80 C 0.44 0.80 0.28 0.81 0.14 0.78 C 0.07 0.75 0.06 0.62 0.10 0.52 Z" />
+      </clipPath>
+
+      <!-- Golden Retriever Puppy Silhouette -->
+      <clipPath id="dog-mask" clipPathUnits="objectBoundingBox">
+        <path d="M 0.18 0.95 C 0.16 0.82 0.19 0.68 0.22 0.52 C 0.18 0.44 0.16 0.32 0.22 0.22 C 0.30 0.10 0.44 0.06 0.56 0.06 C 0.68 0.08 0.78 0.16 0.82 0.26 C 0.86 0.38 0.82 0.50 0.78 0.58 C 0.82 0.68 0.86 0.80 0.84 0.95 Z" />
+      </clipPath>
+
+      <!-- Man Headshot Silhouette -->
+      <clipPath id="man-mask" clipPathUnits="objectBoundingBox">
+        <path d="M 0.08 1.0 C 0.08 0.84 0.16 0.70 0.24 0.58 C 0.28 0.50 0.32 0.42 0.32 0.32 C 0.30 0.22 0.34 0.08 0.44 0.04 C 0.54 0.02 0.64 0.04 0.68 0.14 C 0.72 0.22 0.70 0.32 0.68 0.40 C 0.74 0.50 0.82 0.64 0.88 0.78 C 0.92 0.88 0.94 0.96 0.94 1.0 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Sticky Glass Navbar -->
+  <header class="header" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand" aria-label="ClearCut Homepage">
+        <div class="brand-icon">
+          <img src="/assets/logo.svg" alt="ClearCut Logo" width="44" height="44">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">
+            <span class="clear">Clear</span><span class="cut">Cut</span>
+          </span>
+          <span class="brand-tagline">Background Remover</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="/pages/best-free-background-remover-apps.html" class="nav-link">Compare</a></li>
+          <li><a href="/pages/how-to/remove-background-android.html" class="nav-link">Guides</a></li>
+          <li><a href="/pages/blog/" class="nav-link">Blog</a></li>
+          <li><a href="/pages/free-online-background-remover.html" class="nav-link nav-highlight">🔥 Free Tool</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav CTA -->
+      <div class="nav-actions">
+        <button class="btn btn-primary btn-sm open-download-modal" id="navDownloadBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Download Free</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- ===================================================================
+         Hero Section
+         =================================================================== -->
+    <section class="section hero" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Copy -->
+          <div class="hero-content">
+            <div class="hero-chip">
+              <span class="pulse-dot"></span>
+              <span>100% Free • Works Offline • Privacy First</span>
+            </div>
+
+            <h1 class="hero-title">
+              Remove Image Backgrounds in Seconds. <span class="gradient-text">Free. Forever.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              No sign-up. No internet. No limits. ClearCut removes backgrounds right on your phone with on-device AI. Your photos never leave your device.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#download" class="btn-playstore open-download-modal" id="heroPlaystoreBtn">
+                <svg viewBox="0 0 512 512">
+                  <path fill="#00E6FF" d="M32.5 32.5L256 256 32.5 479.5c-4.1-4.1-6.5-10-6.5-16.5V49c0-6.5 2.4-12.4 6.5-16.5z"/>
+                  <path fill="#00F076" d="M352 160L256 256l96 96 64-37c18.2-10.5 18.2-27.5 0-38l-64-117z"/>
+                  <path fill="#FF3A44" d="M256 256L32.5 479.5c6.5 6.5 16.5 8 26.5 2.5l293-170L256 256z"/>
+                  <path fill="#FFAE00" d="M352 160L59 2c-10-5.5-20-4-26.5 2.5L256 256l96-96z"/>
+                </svg>
+                <div class="playstore-text">
+                  <span class="playstore-sub">Get it on</span>
+                  <span class="playstore-main">Google Play</span>
+                </div>
+              </a>
+
+              <a href="#how-it-works" class="btn btn-secondary btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>See How It Works</span>
+              </a>
+
+              <a href="#playground" class="btn btn-secondary btn-lg" style="border-color: rgba(47, 107, 255, 0.4);">
+                <span>✨ Try Web Demo</span>
+              </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="hero-trust-badges">
+              <div class="trust-badge-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span>100% Offline</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Zero Uploads</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>No Watermark</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                <span>No Account</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Interactive Before/After Comparison Slider -->
+          <div class="hero-visual">
+            <!-- Floating Badges -->
+            <div class="floating-pill pill-1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BFF" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span>0.8s On-Device AI</span>
+            </div>
+            <div class="floating-pill pill-2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>100% Private & Safe</span>
+            </div>
+
+            <!-- Comparison Card -->
+            <div class="comparison-card" id="heroComparisonCard">
+              <div class="card-topbar">
+                <div class="card-title-group">
+                  <span class="live-dot"></span>
+                  <span>Interactive Cutout Preview</span>
+                </div>
+                <!-- Sample Tabs -->
+                <div class="hero-preset-tabs" id="heroPresetTabs">
+                  <button class="preset-tab-btn active" data-preset="portrait">Portrait</button>
+                  <button class="preset-tab-btn" data-preset="sneaker">Sneaker</button>
+                  <button class="preset-tab-btn" data-preset="dog">Pet</button>
+                  <button class="preset-tab-btn" data-preset="man">Headshot</button>
+                </div>
+              </div>
+
+              <!-- Draggable Slider Container -->
+              <div class="before-after-slider" id="heroSlider" role="slider" aria-label="Before and after background removal slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+                <!-- Underneath: After (Cutout over Checkerboard) -->
+                <div class="slider-layer layer-after checkerboard-pattern" id="heroLayerAfter">
+                  <img src="/assets/portrait.jpg" alt="Transparent Cutout" class="cutout-subject-img" id="heroCutoutImg" style="clip-path: url(#portrait-mask);">
+                </div>
+
+                <!-- On Top: Before (Original Image with Full Background) -->
+                <div class="slider-layer layer-before" id="heroLayerBefore">
+                  <img src="/assets/portrait.jpg" alt="Original Photo with Background" id="heroOriginalImg">
+                </div>
+
+                <!-- Slider Divider Handle -->
+                <div class="slider-handle" id="heroSliderHandle">
+                  <div class="slider-handle-button" aria-hidden="true">
+                    <span>&#10094;</span>
+                    <span>&#10095;</span>
+                  </div>
+                </div>
+
+                <!-- Labels -->
+                <span class="slider-label label-before">Original</span>
+                <span class="slider-label label-after">ClearCut AI</span>
+              </div>
+
+              <div class="slider-caption">
+                <span>Drag the handle horizontally to inspect edge precision</span>
+                <span style="color: #60A5FA; font-weight: 600;">✨ On-Device Cutout</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Trust Strip Section
+         =================================================================== -->
+    <section class="trust-strip-section" aria-label="Key Advantages">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+            </div>
+            <div class="trust-content">
+              <h3>Works Offline</h3>
+              <p>No Wi-Fi or data needed. Edit anytime on planes, subways, or traveling.</p>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12"/><path d="M15 9.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z"/></svg>
+            </div>
+            <div class="trust-content">
+              <h3>100% Free Forever</h3>
+              <p>No hidden paywalls, zero subscription fees, and no watermark on exports.</p>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div class="trust-content">
+              <h3>Your Privacy Stays Yours</h3>
+              <p>Photos never leave your phone. Zero cloud uploads or servers involved.</p>
+            </div>
+          </div>
+
+          <div class="trust-card">
+            <div class="trust-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7.5" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg>
+            </div>
+            <div class="trust-content">
+              <h3>No Account Required</h3>
+              <p>Open the app and start erasing right away. No email, passwords, or logins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Interactive Live Playground (Try in Browser!)
+         =================================================================== -->
+    <section class="section playground-section" id="playground">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Web Playground</span>
+          <h2 class="section-title">Test the Cutout <span class="gradient-text">In Your Browser</span></h2>
+          <p class="section-desc">
+            Try switching backgrounds in real-time. Pick solid colors, vibrant gradients, or scenic photo backdrops—or upload your own photo!
+          </p>
+        </div>
+
+        <div class="playground-wrapper">
+          <div class="playground-grid">
+            
+            <!-- Live Preview Stage -->
+            <div class="playground-stage-container">
+              <div class="playground-stage checkerboard-pattern" id="playgroundStage">
+                <!-- Scanning Laser Animation Line -->
+                <div class="scanning-bar" id="scanningBar"></div>
+
+                <!-- Subject Cutout Image / Canvas -->
+                <div class="playground-subject-wrap" id="playgroundSubjectWrap">
+                  <img src="/assets/portrait.jpg" alt="Subject Cutout" id="playgroundImg" style="clip-path: url(#portrait-mask);">
+                  <canvas id="customUploadCanvas" style="display: none;"></canvas>
+                </div>
+              </div>
+
+              <!-- Sample Photo Selector Row -->
+              <div class="sample-selector-row">
+                <span class="sample-selector-label">Choose Sample:</span>
+                <div class="sample-buttons" id="sampleButtons">
+                  <button class="sample-btn active" data-sample="portrait">Portrait</button>
+                  <button class="sample-btn" data-sample="sneaker">Sneaker</button>
+                  <button class="sample-btn" data-sample="dog">Pet Puppy</button>
+                  <button class="sample-btn" data-sample="man">Headshot</button>
+                  
+                  <label class="sample-btn upload-custom-btn" for="userImageUpload">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Upload Custom</span>
+                  </label>
+                  <input type="file" id="userImageUpload" accept="image/*" style="display: none;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Playground Controls Panel -->
+            <div class="playground-controls">
+              
+              <!-- Background Modes -->
+              <div>
+                <div class="control-group-title">
+                  <span>Background Style</span>
+                  <span id="activeBgName" style="color: #60A5FA; font-size: 0.82rem;">Transparent PNG</span>
+                </div>
+
+                <div class="bg-mode-tabs" id="bgModeTabs">
+                  <button class="bg-mode-tab active" data-mode="transparent">Transparent</button>
+                  <button class="bg-mode-tab" data-mode="solid">Solid Color</button>
+                  <button class="bg-mode-tab" data-mode="gradient">Gradient</button>
+                  <button class="bg-mode-tab" data-mode="image">Scenic Image</button>
+                </div>
+
+                <!-- Dynamic Control Container -->
+                <div id="bgOptionsContainer">
+                  <!-- Solid Color Swatches -->
+                  <div class="swatches-grid" id="solidSwatches" style="display: none;">
+                    <button class="swatch-btn" data-color="#FFFFFF" style="background: #FFFFFF;" title="White"></button>
+                    <button class="swatch-btn" data-color="#000000" style="background: #000000;" title="Black"></button>
+                    <button class="swatch-btn" data-color="#64748B" style="background: #64748B;" title="Grey"></button>
+                    <button class="swatch-btn" data-color="#EF4444" style="background: #EF4444;" title="Red"></button>
+                    <button class="swatch-btn" data-color="#F97316" style="background: #F97316;" title="Orange"></button>
+                    <button class="swatch-btn" data-color="#EAB308" style="background: #EAB308;" title="Yellow"></button>
+                    <button class="swatch-btn" data-color="#10B981" style="background: #10B981;" title="Green"></button>
+                    <button class="swatch-btn" data-color="#2F6BFF" style="background: #2F6BFF;" title="Blue"></button>
+                    <button class="swatch-btn" data-color="#7B3FF2" style="background: #7B3FF2;" title="Purple"></button>
+                    <button class="swatch-btn" data-color="#FF4D8D" style="background: #FF4D8D;" title="Pink"></button>
+                    
+                    <div class="color-picker-wrap">
+                      <input type="color" id="customColorPicker" value="#2F6BFF">
+                      <span class="color-picker-label">Custom</span>
+                    </div>
+                  </div>
+
+                  <!-- Gradient Presets -->
+                  <div class="swatches-grid" id="gradientSwatches" style="display: none;">
+                    <button class="swatch-btn" data-grad="linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%)" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);" title="Sunset"></button>
+                    <button class="swatch-btn" data-grad="linear-gradient(135deg, #2F6BFF 0%, #FF4D8D 100%)" style="background: linear-gradient(135deg, #2F6BFF, #FF4D8D);" title="Cyberpunk"></button>
+                    <button class="swatch-btn" data-grad="linear-gradient(135deg, #10B981 0%, #00F0FF 100%)" style="background: linear-gradient(135deg, #10B981, #00F0FF);" title="Aurora"></button>
+                    <button class="swatch-btn" data-grad="linear-gradient(135deg, #7B3FF2 0%, #2F6BFF 100%)" style="background: linear-gradient(135deg, #7B3FF2, #2F6BFF);" title="Electric"></button>
+                    <button class="swatch-btn" data-grad="linear-gradient(135deg, #0F172A 0%, #334155 100%)" style="background: linear-gradient(135deg, #0F172A, #334155);" title="Studio Dark"></button>
+                  </div>
+
+                  <!-- Scenic Photo Backgrounds -->
+                  <div class="scenic-grid" id="scenicSwatches" style="display: none;">
+                    <div class="scenic-thumb-btn" data-bgimg="/assets/bg_studio.jpg" title="Studio Loft">
+                      <img src="/assets/bg_studio.jpg" alt="Studio Loft Backdrop">
+                    </div>
+                    <div class="scenic-thumb-btn" data-bgimg="/assets/bg_sunset.jpg" title="Sunset Beach">
+                      <img src="/assets/bg_sunset.jpg" alt="Sunset Beach Backdrop">
+                    </div>
+                    <div class="scenic-thumb-btn" data-bgimg="/assets/bg_city.jpg" title="Neon City">
+                      <img src="/assets/bg_city.jpg" alt="Neon City Backdrop">
+                    </div>
+                    <div class="scenic-thumb-btn" data-bgimg="/assets/bg_office.jpg" title="Modern Office">
+                      <img src="/assets/bg_office.jpg" alt="Office Backdrop">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sliders: Adjust Tools -->
+              <div class="slider-control">
+                <div class="slider-label-row">
+                  <span>Subject Brightness</span>
+                  <span id="valBrightness">100%</span>
+                </div>
+                <input type="range" class="custom-range" id="rangeBrightness" min="60" max="140" value="100">
+              </div>
+
+              <div class="slider-control">
+                <div class="slider-label-row">
+                  <span>Background Blur</span>
+                  <span id="valBgBlur">0px</span>
+                </div>
+                <input type="range" class="custom-range" id="rangeBgBlur" min="0" max="20" value="0">
+              </div>
+
+              <!-- Export Button -->
+              <div class="playground-actions">
+                <button class="btn btn-primary btn-lg" id="downloadCutoutBtn" style="width: 100%;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Export Cutout Image</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Features Section (3x3 Grid)
+         =================================================================== -->
+    <section class="section features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Built for Speed & Quality</span>
+          <h2 class="section-title">Powerful Features. <span class="gradient-text">Zero Compromises.</span></h2>
+          <p class="section-desc">
+            Everything you need to cut, edit, replace backgrounds, and export professional-grade photos straight from your Android device.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3>One-Tap AI Background Removal</h3>
+            <p>Our optimized neural network detects portraits, products, pets, and objects in milliseconds with hair-level edge precision.</p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/></svg>
+            </div>
+            <h3>Works Completely Offline</h3>
+            <p>Runs 100% on your phone hardware. No mobile data consumed, no internet connection required, zero latency.</p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/></svg>
+            </div>
+            <h3>100% Free, No Watermark</h3>
+            <p>No subscriptions, no token credits, no trial timers, and no obnoxious logos stamped across your exported photos.</p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Private by Design</h3>
+            <p>On-device processing means your intimate personal photos never leave your device storage. Zero servers, zero risk.</p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <h3>Solid, Gradient & Image Backdrops</h3>
+            <p>Instant access to 10+ solid color swatches, aesthetic modern gradients, and custom photo backdrop replacement.</p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg>
+            </div>
+            <h3>Adjust and Crop Tools</h3>
+            <p>Fine-tune brightness, contrast, and edge smoothing, or crop your final graphic to square, story, or passport ratios.</p>
+          </div>
+
+          <!-- Feature 7 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3>High-Quality HD Export</h3>
+            <p>Export in original camera resolution (up to 4K+) with lossless transparent PNG or sharp JPEG format support.</p>
+          </div>
+
+          <!-- Feature 8 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Local Edit History</h3>
+            <p>Revisit past cutout projects anytime from the History screen. Re-export or delete with single-tap controls.</p>
+          </div>
+
+          <!-- Feature 9 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </div>
+            <h3>AMOLED Dark Theme</h3>
+            <p>Engineered for high-contrast viewing and battery savings on modern Android OLED displays, plus light theme toggle.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         How It Works Section (Interactive 5-Step Timeline)
+         =================================================================== -->
+    <section class="section howitworks-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Simple 5-Step Process</span>
+          <h2 class="section-title">Background Removal. <span class="gradient-text">Made Simple.</span></h2>
+          <p class="section-desc">
+            No complex photo editing skills required. Follow 5 intuitive steps right on your Android phone.
+          </p>
+        </div>
+
+        <div class="timeline-interactive-wrapper">
+          
+          <!-- Steps List -->
+          <div class="timeline-steps-list" id="timelineSteps">
+            
+            <div class="step-item active" data-step="1">
+              <div class="step-number">1</div>
+              <div class="step-text">
+                <h3>Select a Photo</h3>
+                <p>Pick any image from your phone's photo gallery, snap a fresh picture with your camera, or try a built-in sample.</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="2">
+              <div class="step-number">2</div>
+              <div class="step-text">
+                <h3>AI Removes Background</h3>
+                <p>On-device neural network analyzes and separates the foreground subject with a smooth progress bar. No internet needed.</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="3">
+              <div class="step-number">3</div>
+              <div class="step-text">
+                <h3>Edit and Customize</h3>
+                <p>Inspect the cutout against a transparent checkerboard. Use touch tools to adjust brightness, contrast, and crop.</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="4">
+              <div class="step-number">4</div>
+              <div class="step-text">
+                <h3>Choose a New Background</h3>
+                <p>Select solid colors (white, black, vibrant palette), modern gradients, or load any photo from your gallery as a backdrop.</p>
+              </div>
+            </div>
+
+            <div class="step-item" data-step="5">
+              <div class="step-number">5</div>
+              <div class="step-text">
+                <h3>Save or Share</h3>
+                <p>Export at maximum resolution with zero compression loss, or share directly to Instagram, WhatsApp, or email.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Realistic Phone Mockup Displaying Active Step -->
+          <div class="timeline-phone-view">
+            <div class="phone-mockup-frame">
+              <div class="phone-punchhole"></div>
+              
+              <!-- Status Bar -->
+              <div class="phone-statusbar">
+                <span>9:41</span>
+                <div class="statusbar-icons">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="20" y1="11" x2="20" y2="13"/></svg>
+                </div>
+              </div>
+
+              <!-- Inner Phone Screens -->
+              <div class="phone-screen-content">
+                
+                <!-- Screen 1: Select Photo -->
+                <div class="app-screen-view active" id="phoneScreen1">
+                  <div class="app-topbar">
+                    <span class="app-topbar-brand">
+                      <img src="/assets/logo.svg" width="22" height="22" alt="App Icon">
+                      <span>ClearCut</span>
+                    </span>
+                    <span style="font-size: 0.75rem; color: #60A5FA;">PRO</span>
+                  </div>
+
+                  <div style="text-align: center; margin: 30px 0 20px;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(47, 107, 255, 0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; border: 1px solid rgba(47, 107, 255, 0.4);">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    </div>
+                    <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 4px;">Choose an Image</h4>
+                    <p style="font-size: 0.78rem; color: var(--text-secondary);">Select from gallery or snap a photo</p>
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="background: rgba(255,255,255,0.06); padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
+                      <span style="color: #60A5FA;">📁</span>
+                      <span>Open Photo Gallery</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.06); padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
+                      <span style="color: #60A5FA;">📷</span>
+                      <span>Take a Photo</span>
+                    </div>
+                    <div style="background: rgba(47, 107, 255, 0.15); border: 1px solid rgba(47, 107, 255, 0.3); padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
+                      <span style="color: #60A5FA;">✨</span>
+                      <span>Try Sample Photos</span>
+                    </div>
+                  </div>
+
+                  <div class="app-btn-select">Select Photo</div>
+                </div>
+
+                <!-- Screen 2: Processing AI -->
+                <div class="app-screen-view" id="phoneScreen2">
+                  <div class="app-topbar">
+                    <span style="font-size: 0.85rem; font-weight: 700;">Processing Image</span>
+                    <span style="font-size: 0.72rem; color: #10B981;">Offline</span>
+                  </div>
+
+                  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <div style="position: relative; width: 140px; height: 140px; border-radius: 16px; overflow: hidden; margin-bottom: 24px; border: 2px solid var(--brand-blue); box-shadow: 0 0 25px rgba(47, 107, 255, 0.5);">
+                      <img src="/assets/portrait.jpg" alt="Processing" style="width: 100%; height: 100%; object-fit: cover;">
+                      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(47, 107, 255, 0.4)); animation: scanSweep 1.5s infinite alternate;"></div>
+                    </div>
+
+                    <div style="width: 44px; height: 44px; border: 3px solid rgba(255, 255, 255, 0.1); border-top-color: var(--brand-blue); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px;"></div>
+                    <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;">Removing background...</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); max-width: 200px;">This may take a few seconds. Powered by on-device AI.</p>
+                  </div>
+                </div>
+
+                <!-- Screen 3: Edit and Cutout -->
+                <div class="app-screen-view" id="phoneScreen3">
+                  <div class="app-topbar">
+                    <span style="font-size: 0.85rem; font-weight: 700;">Editor</span>
+                    <span style="font-size: 0.75rem; color: #60A5FA;">Undo ↶</span>
+                  </div>
+
+                  <div style="flex: 1; border-radius: 14px; overflow: hidden; position: relative;" class="checkerboard-pattern">
+                    <img src="/assets/portrait.jpg" alt="Cutout Preview" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; margin-top: 14px; font-size: 0.72rem; color: var(--text-secondary);">
+                    <span>Background</span>
+                    <span>Adjust</span>
+                    <span>Crop</span>
+                    <span>More</span>
+                  </div>
+                </div>
+
+                <!-- Screen 4: Background Options -->
+                <div class="app-screen-view" id="phoneScreen4">
+                  <div class="app-topbar">
+                    <span style="font-size: 0.85rem; font-weight: 700;">Choose Background</span>
+                    <span style="font-size: 0.75rem; color: #10B981;">Done</span>
+                  </div>
+
+                  <div style="height: 180px; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #FF6B6B, #FFE66D); margin-bottom: 14px;">
+                    <img src="/assets/portrait.jpg" alt="Cutout" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+                  </div>
+
+                  <div style="display: flex; gap: 8px; margin-bottom: 12px; font-size: 0.75rem;">
+                    <span style="color: #60A5FA; font-weight: 700;">Solid</span>
+                    <span>Gradient</span>
+                    <span>Custom Image</span>
+                  </div>
+
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF;"></div>
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #000000;"></div>
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #2F6BFF; border: 2px solid #FFFFFF;"></div>
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #7B3FF2;"></div>
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #FF4D8D;"></div>
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #10B981;"></div>
+                  </div>
+                </div>
+
+                <!-- Screen 5: Save & Share -->
+                <div class="app-screen-view" id="phoneScreen5">
+                  <div class="app-topbar">
+                    <span style="font-size: 0.85rem; font-weight: 700;">Result</span>
+                    <span style="font-size: 0.72rem; color: #10B981;">HD Ready</span>
+                  </div>
+
+                  <div style="height: 190px; border-radius: 14px; overflow: hidden; margin-bottom: 14px;" class="checkerboard-pattern">
+                    <img src="/assets/portrait.jpg" alt="Final Cutout" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+                  </div>
+
+                  <div style="background: rgba(16, 185, 129, 0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; color: #34D399; margin-bottom: 12px; text-align: center;">
+                    ✓ Export Quality: Best (Original Resolution)
+                  </div>
+
+                  <div style="display: flex; gap: 8px;">
+                    <div style="flex: 1; background: var(--grad-primary); color: #fff; padding: 10px; border-radius: 10px; font-size: 0.78rem; text-align: center; font-weight: 700;">
+                      Save Image
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); color: #fff; padding: 10px; border-radius: 10px; font-size: 0.78rem; text-align: center;">
+                      Share
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Screenshots Gallery Section
+         =================================================================== -->
+    <section class="section screenshots-section" id="screenshots">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">App Tour</span>
+          <h2 class="section-title">Explore <span class="gradient-text">ClearCut Screens</span></h2>
+          <p class="section-desc">
+            Take a look at the actual user interface designed for speed, privacy, and simplicity. Click to enlarge in full-screen.
+          </p>
+        </div>
+
+        <!-- Navigation Tabs for Screenshots -->
+        <div class="gallery-nav-tabs" id="galleryTabs">
+          <button class="gallery-tab-btn active" data-screen="splash">Splash</button>
+          <button class="gallery-tab-btn" data-screen="home">Home</button>
+          <button class="gallery-tab-btn" data-screen="picker">Image Picker</button>
+          <button class="gallery-tab-btn" data-screen="processing">Processing</button>
+          <button class="gallery-tab-btn" data-screen="editor">Editor</button>
+          <button class="gallery-tab-btn" data-screen="backgrounds">Backgrounds</button>
+          <button class="gallery-tab-btn" data-screen="result">Result & Share</button>
+          <button class="gallery-tab-btn" data-screen="history">History</button>
+          <button class="gallery-tab-btn" data-screen="settings">Settings</button>
+        </div>
+
+        <!-- Screenshot Preview Stage -->
+        <div class="gallery-stage">
+          <div class="gallery-phone-container" id="galleryPhoneBox" title="Click to open full-screen lightbox">
+            <div class="zoom-hint-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span>Click to Enlarge</span>
+            </div>
+
+            <div class="phone-mockup-frame" style="max-width: 340px;">
+              <div class="phone-punchhole"></div>
+              <div class="phone-statusbar">
+                <span>9:41</span>
+                <div class="statusbar-icons">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/></svg>
+                </div>
+              </div>
+
+              <div class="phone-screen-content" id="galleryScreenContainer" style="min-height: 480px;">
+                <!-- Dynamic Content Loaded by JS -->
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-caption" id="galleryCaption">
+            <h4 id="galleryTitle">Splash Screen</h4>
+            <p id="galleryDesc">Fast initialization of the local on-device neural network model with zero cloud connection.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Privacy Section
+         =================================================================== -->
+    <section class="section privacy-section" id="privacy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Privacy by Design</span>
+          <h2 class="section-title">Your Photos <span class="gradient-text">Never Leave Your Phone</span></h2>
+          <p class="section-desc">
+            Most online background erasers transmit your personal photos to third-party cloud servers. ClearCut runs 100% on-device AI.
+          </p>
+        </div>
+
+        <div class="privacy-architecture-card">
+          <div class="privacy-comparison-grid">
+            
+            <!-- ClearCut (Safe) -->
+            <div class="privacy-column clearcut">
+              <span class="privacy-header-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>ClearCut On-Device AI</span>
+              </span>
+              <h3>100% Local Execution</h3>
+              <p>Your photos are processed directly in your Android phone's RAM and GPU.</p>
+
+              <div class="privacy-flow">
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Photo loaded from internal phone storage</span>
+                </div>
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>On-device neural network segments pixels</span>
+                </div>
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Saved directly back to your device gallery</span>
+                </div>
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Zero network requests. Zero telemetry.</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 24px;">
+                <button class="btn btn-primary btn-sm open-privacy-modal" id="readPrivacyBtn">
+                  <span>Read Full Privacy Policy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Typical Cloud Apps (Risky) -->
+            <div class="privacy-column others">
+              <span class="privacy-header-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Typical Cloud Removers</span>
+              </span>
+              <h3>Remote Cloud Uploads</h3>
+              <p>Your private photos are uploaded across the public internet to external servers.</p>
+
+              <div class="privacy-flow">
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  <span>Photo compressed and sent over the internet</span>
+                </div>
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  <span>Stored temporarily or logged on remote servers</span>
+                </div>
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  <span>Vulnerable to leaks, data mining, or outages</span>
+                </div>
+                <div class="flow-step">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  <span>Mandatory account registration & tracking</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Use Cases Section
+         =================================================================== -->
+    <section class="section usecases-section" id="use-cases">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Versatile Use Cases</span>
+          <h2 class="section-title">Created for <span class="gradient-text">Every Creator</span></h2>
+          <p class="section-desc">
+            Whether for business, social media, or creative fun, ClearCut delivers instant cutouts for every workflow.
+          </p>
+        </div>
+
+        <div class="usecases-grid">
+          
+          <div class="usecase-card">
+            <span class="usecase-badge">Professional</span>
+            <h3>Profile Photos & Avatars</h3>
+            <p>Create clean, sharp headshots for LinkedIn, CVs, Twitter, and professional directories with solid or studio backdrops.</p>
+          </div>
+
+          <div class="usecase-card">
+            <span class="usecase-badge">Business</span>
+            <h3>E-Commerce Product Listings</h3>
+            <p>Isolate shoes, clothing, electronics, and handmade goods on pure white backdrops for Amazon, eBay, Shopify, and Etsy.</p>
+          </div>
+
+          <div class="usecase-card">
+            <span class="usecase-badge">Official</span>
+            <h3>Passport & ID Photos</h3>
+            <p>Quickly change background to official plain white or light blue for driver's licenses, student cards, and official applications.</p>
+          </div>
+
+          <div class="usecase-card">
+            <span class="usecase-badge">Social Media</span>
+            <h3>Instagram Stories & Reels</h3>
+            <p>Cut out yourself or pets to paste into aesthetic collages, memes, and trending social media content.</p>
+          </div>
+
+          <div class="usecase-card">
+            <span class="usecase-badge">Content Creator</span>
+            <h3>YouTube Thumbnails</h3>
+            <p>Extract your face with facial expression and add colorful glow outlines to maximize video click-through rates.</p>
+          </div>
+
+          <div class="usecase-card">
+            <span class="usecase-badge">Creative</span>
+            <h3>Stickers & Collages</h3>
+            <p>Export transparent PNGs to create custom WhatsApp sticker packs, scrapbook collages, and digital artwork.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Comparison Table Section
+         =================================================================== -->
+    <section class="section comparison-section" id="comparison">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Feature Comparison</span>
+          <h2 class="section-title">ClearCut vs <span class="gradient-text">Typical Background Apps</span></h2>
+          <p class="section-desc">
+            See why thousands of users are switching to ClearCut for pure freedom, speed, and privacy.
+          </p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <div class="table-responsive">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th class="clearcut-col">ClearCut App</th>
+                  <th>Typical Cloud Apps</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>100% Free Forever</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ Yes, Always Free</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Paid subscriptions / credits</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Account Required</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ No Sign-Up Needed</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Mandatory email/social login</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Needs Internet Connection</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ Works 100% Offline</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Mandatory active connection</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Watermark on Export</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ Zero Watermark</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Obtrusive logo unless paid</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Photos Uploaded to Servers</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ Never (100% On-Device)</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Uploaded to remote servers</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Export Resolution</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ Full Camera Quality (4K+)</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Downscaled to 500px on free tier</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Processing Speed</strong></td>
+                  <td class="clearcut-col"><span class="table-check">✔ Instant (~0.8s local)</span></td>
+                  <td class="others-col"><span class="table-cross">✖ Upload latency & queue delays</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         FAQ Section (Accordion)
+         =================================================================== -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Got Questions?</span>
+          <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+          <p class="section-desc">
+            Everything you need to know about the app, pricing, on-device AI privacy, and upcoming features.
+          </p>
+        </div>
+
+        <div class="faq-container" id="faqAccordion">
+          
+          <div class="faq-item open">
+            <button class="faq-question">
+              <span>Is ClearCut really 100% free?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, ClearCut is completely free to download and use. There are no paid tiers, no subscription renewals, no hidden fees, and no in-app purchases required for high-resolution background removal.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do I need an account or internet connection?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Neither! You do not need to create an account, log in with Google, or provide an email address. Once installed, ClearCut operates 100% offline using your phone's processor.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is my photo uploaded anywhere?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Never. Your photos remain strictly on your Android device. The AI segmentation model runs locally inside the app. We have no servers, no databases, and zero access to your photos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Will my exported image have a watermark?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>No watermark is ever added to your photos. You receive clean, transparent PNG or JPEG files in their full original resolution.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What image quality does ClearCut export?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>ClearCut exports at the original photo resolution up to your device camera limits (including 12MP, 48MP, or 4K+). You can choose between "Best Quality" and "Balanced" in the settings screen.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Which Android versions are supported?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>ClearCut supports Android 8.0 (Oreo) and above, through Android 14 and Android 15. The AI model is optimized for Snapdragon, MediaTek, Exynos, and Google Tensor chips.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What upcoming Pro Features are planned?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>We are actively developing batch background removal (edit multiple photos simultaneously), smart shadow generators, magic erase brush for manual touchups, and AI background generation.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I use my own photo as a new background?</span>
+              <span class="faq-icon">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! In the Background tab, simply choose "Image" and select any photo from your phone gallery to place behind your cutout subject.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         Final CTA Banner Section
+         =================================================================== -->
+    <section class="cta-section" id="download">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <h2 class="cta-title">Try ClearCut Today</h2>
+            <p class="cta-desc">
+              Experience the fastest, most private background remover on Android. Free forever, no watermark, no sign-up.
+            </p>
+
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <button class="btn-playstore open-download-modal">
+                <svg viewBox="0 0 512 512">
+                  <path fill="#00E6FF" d="M32.5 32.5L256 256 32.5 479.5c-4.1-4.1-6.5-10-6.5-16.5V49c0-6.5 2.4-12.4 6.5-16.5z"/>
+                  <path fill="#00F076" d="M352 160L256 256l96 96 64-37c18.2-10.5 18.2-27.5 0-38l-64-117z"/>
+                  <path fill="#FF3A44" d="M256 256L32.5 479.5c6.5 6.5 16.5 8 26.5 2.5l293-170L256 256z"/>
+                  <path fill="#FFAE00" d="M352 160L59 2c-10-5.5-20-4-26.5 2.5L256 256l96-96z"/>
+                </svg>
+                <div class="playstore-text">
+                  <span class="playstore-sub">Get it on</span>
+                  <span class="playstore-main">Google Play</span>
+                </div>
+              </button>
+
+              <button class="btn btn-secondary btn-lg open-download-modal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Direct APK Download</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- QR Code Download Box -->
+          <div class="cta-right-box">
+            <!-- Simulated QR Code SVG -->
+            <div class="qr-mockup">
+              <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <!-- QR Code Pattern -->
+                <rect width="100" height="100" fill="#FFFFFF"/>
+                <!-- Top-Left Target -->
+                <rect x="10" y="10" width="24" height="24" fill="#050816"/>
+                <rect x="14" y="14" width="16" height="16" fill="#FFFFFF"/>
+                <rect x="18" y="18" width="8" height="8" fill="#050816"/>
+                <!-- Top-Right Target -->
+                <rect x="66" y="10" width="24" height="24" fill="#050816"/>
+                <rect x="70" y="14" width="16" height="16" fill="#FFFFFF"/>
+                <rect x="74" y="18" width="8" height="8" fill="#050816"/>
+                <!-- Bottom-Left Target -->
+                <rect x="10" y="66" width="24" height="24" fill="#050816"/>
+                <rect x="14" y="70" width="16" height="16" fill="#FFFFFF"/>
+                <rect x="18" y="74" width="8" height="8" fill="#050816"/>
+                <!-- Data Blocks -->
+                <rect x="38" y="14" width="6" height="6" fill="#050816"/>
+                <rect x="48" y="18" width="6" height="6" fill="#050816"/>
+                <rect x="38" y="28" width="6" height="6" fill="#050816"/>
+                <rect x="48" y="38" width="6" height="6" fill="#050816"/>
+                <rect x="14" y="44" width="6" height="6" fill="#050816"/>
+                <rect x="24" y="48" width="6" height="6" fill="#050816"/>
+                <rect x="74" y="44" width="6" height="6" fill="#050816"/>
+                <rect x="84" y="48" width="6" height="6" fill="#050816"/>
+                <rect x="38" y="66" width="6" height="6" fill="#050816"/>
+                <rect x="48" y="74" width="6" height="6" fill="#050816"/>
+                <rect x="66" y="66" width="6" height="6" fill="#050816"/>
+                <rect x="78" y="78" width="6" height="6" fill="#050816"/>
+                <rect x="44" y="84" width="6" height="6" fill="#050816"/>
+              </svg>
+            </div>
+            <div class="qr-text-group">
+              <h4>Scan to Install</h4>
+              <p>Point your phone camera to download directly on Android.</p>
+              <span style="font-size: 0.75rem; color: #60A5FA; font-weight: 600; display: block; margin-top: 6px;">Android 8.0+ • ~25MB</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       Footer
+       =================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="#" class="brand">
+            <div class="brand-icon">
+              <img src="/assets/logo.svg" alt="ClearCut Logo" width="44" height="44">
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">
+                <span class="clear">Clear</span><span class="cut">Cut</span>
+              </span>
+              <span class="brand-tagline">Background Remover</span>
+            </div>
+          </a>
+
+          <p>
+            ClearCut is a 100% free Android application powered by on-device AI. Remove photo backgrounds in seconds without cloud uploads.
+          </p>
+
+          <div class="footer-slogan-badge">
+            <span>Free • Offline • On Your Device</span>
+          </div>
+        </div>
+
+        <!-- Links Column 1: Compare -->
+        <div class="footer-col">
+          <h4>Compare</h4>
+          <ul class="footer-links">
+            <li><a href="/pages/remove-bg-alternative.html">remove.bg Alternative</a></li>
+            <li><a href="/pages/photoroom-alternative.html">PhotoRoom Alternative</a></li>
+            <li><a href="/pages/best-free-background-remover-apps.html">Best Free Apps</a></li>
+            <li><a href="/pages/offline-background-remover.html">Offline Remover</a></li>
+            <li><a href="/pages/background-remover-no-watermark.html">No Watermark</a></li>
+            <li><a href="/pages/background-remover-no-signup.html">No Sign-Up</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2: Use Cases -->
+        <div class="footer-col">
+          <h4>Use Cases</h4>
+          <ul class="footer-links">
+            <li><a href="/pages/passport-photo-background-remover.html">Passport Photo</a></li>
+            <li><a href="/pages/product-photo-background-remover.html">Product Photos</a></li>
+            <li><a href="/pages/transparent-background-maker.html">Transparent PNG</a></li>
+            <li><a href="/pages/white-background-photo-maker.html">White Background</a></li>
+            <li><a href="/pages/youtube-thumbnail-background-remover.html">YouTube Thumbnails</a></li>
+            <li><a href="/pages/sticker-maker-background-remover.html">Sticker Maker</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 3: Guides & Blog -->
+        <div class="footer-col">
+          <h4>Guides & Blog</h4>
+          <ul class="footer-links">
+            <li><a href="/pages/how-to/remove-background-android.html">Android BG Removal</a></li>
+            <li><a href="/pages/how-to/make-photo-background-transparent.html">Transparent Photos</a></li>
+            <li><a href="/pages/blog/">Blog & Tutorials</a></li>
+            <li><a href="/pages/blog/offline-background-removal-privacy.html">Privacy Breakdown</a></li>
+            <li><a href="/pages/free-online-background-remover.html" style="color: #FBBF24; font-weight: 600;">🔥 Free Web Tool</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Legal & Contact -->
+        <div class="footer-col">
+          <h4>Legal & Support</h4>
+          <ul class="footer-links">
+            <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/pages/terms-of-service.html">Terms of Service</a></li>
+            <li><a href="/pages/about.html">About ClearCut</a></li>
+            <li><a href="/pages/contact.html">Contact Us</a></li>
+            <li><a href="/pages/changelog.html">Changelog</a></li>
+            <li><a href="mailto:support@clearcut.app" style="color:#60A5FA;">support@clearcut.app</a></li>
+          </ul>
+          <div class="social-icons-row" style="margin-top: 16px;">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="X / Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 ClearCut. All rights reserved.</span>
+        <span>Made with privacy & precision for Android users worldwide.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       Modals: Privacy Policy, Terms, Contact & Download
+       =================================================================== -->
+  
+  <!-- Privacy Policy Modal -->
+  <div class="modal-backdrop" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="privacyModalTitle">Privacy Policy</h3>
+        <button class="modal-close-btn close-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Effective Date:</strong> October 2026</p>
+        <p>ClearCut ("we", "our", or "the app") is committed to protecting your privacy. This policy outlines how your photos and data are handled.</p>
+        
+        <h4>1. 100% On-Device Processing</h4>
+        <p>ClearCut is built with privacy-first architecture. All photo segmentation and background removal computations are performed locally on your Android device using on-device neural networks. Your photos are never transmitted, uploaded, or synced to any external servers, cloud providers, or remote databases.</p>
+
+        <h4>2. No Data Collection or Tracking</h4>
+        <p>We do not collect personal identifying information (PII). ClearCut does not require an account, email address, phone number, or login credentials. We do not inspect, log, or store your photos.</p>
+
+        <h4>3. Device Storage Permissions</h4>
+        <p>ClearCut requests standard Android storage/media permissions solely to allow you to pick photos from your gallery and save edited cutouts back to your device storage. These permissions are used strictly on-device.</p>
+
+        <h4>4. Third-Party Services</h4>
+        <p>ClearCut does not embed third-party advertising SDKs that track user identities or sell behavioral profiles. The app is distributed through Google Play, which may collect standard anonymized crash diagnostics under Google's standard developer terms.</p>
+
+        <h4>5. Contact Us</h4>
+        <p>If you have any questions regarding this Privacy Policy, please contact us at <a href="mailto:support@clearcut.app" style="color: #60A5FA;">support@clearcut.app</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms of Service Modal -->
+  <div class="modal-backdrop" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="termsModalTitle">Terms of Service</h3>
+        <button class="modal-close-btn close-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Last Updated:</strong> October 2026</p>
+        <h4>1. Acceptance of Terms</h4>
+        <p>By downloading or using ClearCut, you agree to these Terms of Service. If you do not agree, do not install or use the application.</p>
+
+        <h4>2. License and Permitted Use</h4>
+        <p>ClearCut grants you a revocable, non-exclusive, non-transferable, limited license to use the app for personal and commercial photo editing on your Android devices, subject to these terms.</p>
+
+        <h4>3. Intellectual Property Rights</h4>
+        <p>You retain 100% full ownership, copyright, and rights to all images and media you process using ClearCut. ClearCut claims zero ownership or rights over your photos.</p>
+
+        <h4>4. Disclaimer of Warranty</h4>
+        <p>The application is provided "as is" and "as available" without warranty of any kind. We make no warranty that the app will meet every individual segmentation requirement on all hardware configurations.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact & Feedback Modal -->
+  <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="contactModalTitle">Contact & Feedback</h3>
+        <button class="modal-close-btn close-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Have an inquiry, feature suggestion, or found a bug? Send us a message and our team will get back to you.</p>
+
+        <form id="contactForm" style="margin-top: 18px;">
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <input type="text" id="contactName" class="form-input" placeholder="e.g. Alex Smith" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" class="form-input" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject">Topic</label>
+            <select id="contactSubject" class="form-select">
+              <option value="feedback">General Feedback</option>
+              <option value="bug">Bug Report</option>
+              <option value="feature">Feature Request (Pro Features)</option>
+              <option value="support">Technical Support</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" class="form-textarea" rows="4" placeholder="How can we help you?" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;">
+            <span>Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download & QR Code Modal -->
+  <div class="modal-backdrop" id="downloadModal" role="dialog" aria-modal="true" aria-labelledby="downloadModalTitle">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 id="downloadModalTitle">Download ClearCut</h3>
+        <button class="modal-close-btn close-modal-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 150px; height: 150px; margin: 0 auto 20px; background: #fff; padding: 10px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4);">
+          <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <rect width="100" height="100" fill="#FFFFFF"/>
+            <rect x="10" y="10" width="24" height="24" fill="#050816"/>
+            <rect x="14" y="14" width="16" height="16" fill="#FFFFFF"/>
+            <rect x="18" y="18" width="8" height="8" fill="#050816"/>
+            <rect x="66" y="10" width="24" height="24" fill="#050816"/>
+            <rect x="70" y="14" width="16" height="16" fill="#FFFFFF"/>
+            <rect x="74" y="18" width="8" height="8" fill="#050816"/>
+            <rect x="10" y="66" width="24" height="24" fill="#050816"/>
+            <rect x="14" y="70" width="16" height="16" fill="#FFFFFF"/>
+            <rect x="18" y="74" width="8" height="8" fill="#050816"/>
+            <rect x="38" y="14" width="6" height="6" fill="#050816"/>
+            <rect x="48" y="18" width="6" height="6" fill="#050816"/>
+            <rect x="38" y="28" width="6" height="6" fill="#050816"/>
+            <rect x="48" y="38" width="6" height="6" fill="#050816"/>
+            <rect x="14" y="44" width="6" height="6" fill="#050816"/>
+            <rect x="24" y="48" width="6" height="6" fill="#050816"/>
+            <rect x="74" y="44" width="6" height="6" fill="#050816"/>
+            <rect x="84" y="48" width="6" height="6" fill="#050816"/>
+            <rect x="38" y="66" width="6" height="6" fill="#050816"/>
+            <rect x="48" y="74" width="6" height="6" fill="#050816"/>
+            <rect x="66" y="66" width="6" height="6" fill="#050816"/>
+            <rect x="78" y="78" width="6" height="6" fill="#050816"/>
+          </svg>
+        </div>
+
+        <h4 style="margin-bottom: 6px;">Scan with Your Android Phone</h4>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 24px;">
+          Direct Google Play Store download or verified direct APK installation.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="#" class="btn btn-primary btn-lg" id="confirmPlayStoreBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9V3z"/></svg>
+            <span>Open in Google Play Store</span>
+          </a>
+
+          <button class="btn btn-secondary btn-lg" id="confirmApkDownloadBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download Direct APK (v1.2.0 • 24.8MB)</span>
+          </button>
+        </div>
+
+        <div style="margin-top: 18px; font-size: 0.78rem; color: var(--text-muted);">
+          SHA-256: 8f4c82b1...32d9 • Free • No ads during edit
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screenshot Lightbox Modal -->
+  <div class="modal-backdrop" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Screenshot Lightbox Viewer">
+    <div class="modal-dialog" style="max-width: 440px; background: transparent; border: none; box-shadow: none;">
+      <div style="position: relative; width: 100%;">
+        <button class="modal-close-btn close-modal-btn" style="position: absolute; top: -16px; right: -16px; background: #000; z-index: 100;" aria-label="Close Lightbox">&times;</button>
+        <div id="lightboxContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toastNotice" role="alert" aria-live="polite">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMessage">Success!</span>
+  </div>
+
+  <!-- Main JavaScript Bundle -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
