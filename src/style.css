@@ -2028,15 +2028,214 @@ img {
 }
 
 .footer-links a {
+  position: relative;
   font-size: 0.9rem;
   color: var(--text-secondary);
-  transition: color var(--transition-fast), transform var(--transition-fast);
-  display: inline-block;
+  transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.footer-links a::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--brand-blue);
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-links a:hover {
   color: #FFFFFF;
-  transform: translateX(4px);
+}
+
+.footer-links a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.footer-links a::after {
+  content: '↗';
+  margin-left: 6px;
+  font-size: 0.75rem;
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--accent-cyan);
+}
+
+.footer-links a:hover::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ===================================================================
+   Skiper UI (@skiper-ui) Components Suite
+   =================================================================== */
+
+/* skiper40 - CssLink: Cursor.com Directional Underline & Arrow Hover */
+.skiper-link-001 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.skiper-link-001::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--brand-blue);
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skiper-link-001:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.skiper-link-001 .skiper-arrow {
+  margin-left: 4px;
+  font-size: 0.75em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--accent-cyan);
+}
+
+.skiper-link-001:hover .skiper-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* skiper40 - Link004: Mix-Blend Difference Hover Reveal */
+.skiper-link-blend {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  isolation: isolate;
+}
+
+.skiper-link-blend::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #FFFFFF;
+  border-radius: inherit;
+  transform-origin: left;
+  transform: scaleX(0);
+  mix-blend-mode: difference;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.skiper-link-blend:hover::before {
+  transform: scaleX(1);
+}
+
+/* skiper41 - Progressive Blur Overlays */
+.skiper-progressive-blur-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 95;
+  background: linear-gradient(180deg, rgba(5, 8, 22, 0.85) 0%, transparent 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+/* skiper52 - Expand On Hover Interactive Gallery */
+.skiper-expand-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.skiper-expand-card {
+  position: relative;
+  width: 80px;
+  height: 320px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skiper-expand-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.skiper-expand-card.active,
+.skiper-expand-card:hover {
+  width: 320px;
+  border-color: rgba(47, 107, 255, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(47, 107, 255, 0.25);
+}
+
+.skiper-expand-card .card-caption-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(5, 8, 22, 0.95) 0%, rgba(5, 8, 22, 0.4) 40%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.35s ease;
+  pointer-events: none;
+}
+
+.skiper-expand-card.active .card-caption-overlay,
+.skiper-expand-card:hover .card-caption-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skiper-expand-card .card-caption-overlay h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.skiper-expand-card .card-caption-overlay p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
 }
 
 .social-icons-row {

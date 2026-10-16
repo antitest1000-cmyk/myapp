@@ -323,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScreenshotsGallery();
   initFAQ();
   initModals();
+  initSkiperGallery();
 });
 
 // ===================================================================
@@ -974,4 +975,22 @@ function showToast(message) {
   setTimeout(() => {
     toast.classList.remove('show');
   }, 4000);
+}
+
+// ===================================================================
+// Skiper UI (@skiper-ui) Interactions
+// ===================================================================
+function initSkiperGallery() {
+  const cards = document.querySelectorAll('.skiper-expand-card');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const activate = () => {
+      cards.forEach((c) => c.classList.remove('active'));
+      card.classList.add('active');
+    };
+    card.addEventListener('mouseenter', activate);
+    card.addEventListener('focus', activate);
+    card.addEventListener('click', activate);
+  });
 }
