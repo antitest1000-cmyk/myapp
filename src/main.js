@@ -1,5 +1,5 @@
-﻿/* ===================================================================
-   ClearCut â€“ Background Remover | Official Web App Script
+/* ===================================================================
+   ClearCut – Background Remover | Official Web App Script
    Features:
    - Sticky Glass Navbar & Mobile Drawer
    - Interactive Before/After Comparison Slider (Touch + Drag + Presets)
@@ -17,9 +17,9 @@ import confetti from 'canvas-confetti';
 // Asset Mappings
 const PRESETS = {
   portrait: {
-    name: 'Woman Portrait',
-    src: '/assets/portrait.jpg',
-    mask: 'url(#portrait-mask)'
+    name: 'ClearCut Cutout',
+    src: '/assets/slider/transparent.png',
+    mask: 'none'
   },
   sneaker: {
     name: 'Athletic Sneaker',
@@ -81,13 +81,13 @@ const GALLERY_SCREENS = {
 
         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
           <button style="background: linear-gradient(135deg, #2F6BFF, #7B3FF2); color: #fff; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(47,107,255,0.4);">+ Choose from Gallery</button>
-          <button style="background: rgba(255,255,255,0.06); color: #fff; padding: 10px; border-radius: 14px; font-size: 0.82rem;">ðŸ“· Open Camera</button>
+          <button style="background: rgba(255,255,255,0.06); color: #fff; padding: 10px; border-radius: 14px; font-size: 0.82rem;">📷 Open Camera</button>
         </div>
 
         <span style="font-size: 0.75rem; color: #94A3B8; font-weight: 700; margin-bottom: 8px;">Recent Edits</span>
         <div style="display: flex; gap: 8px; overflow-x: auto;">
           <div style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; background: #1a2242; flex-shrink: 0;" class="checkerboard-pattern">
-            <img src="/assets/portrait.jpg" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+            <img src="/assets/slider/transparent.png" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
           <div style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden; background: #1a2242; flex-shrink: 0;" class="checkerboard-pattern">
             <img src="/assets/sneaker.jpg" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#sneaker-mask);">
@@ -98,7 +98,7 @@ const GALLERY_SCREENS = {
         </div>
 
         <div style="margin-top: auto; padding: 8px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center; font-size: 0.7rem; color: #34D399;">
-          ðŸ›¡ï¸ 100% On-Device AI â€¢ No Photos Uploaded
+          🛡️ 100% On-Device AI &bull; No Photos Uploaded
         </div>
       </div>
     `
@@ -146,7 +146,7 @@ const GALLERY_SCREENS = {
 
         <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Removing background...</h4>
         <p style="font-size: 0.78rem; color: #94A3B8; max-width: 220px;">This may take a few seconds. Powered by on-device AI.</p>
-        <span style="font-size: 0.7rem; color: #10B981; margin-top: 16px;">âš¡ Offline â€¢ Zero network requests</span>
+        <span style="font-size: 0.7rem; color: #10B981; margin-top: 16px;">⚡ Offline &bull; Zero network requests</span>
       </div>
     `
   },
@@ -157,18 +157,18 @@ const GALLERY_SCREENS = {
       <div style="flex: 1; display: flex; flex-direction: column; padding: 14px;">
         <div class="app-topbar">
           <span style="font-size: 0.85rem; font-weight: 700;">Editor</span>
-          <span style="font-size: 0.75rem; color: #60A5FA;">Undo â†¶</span>
+          <span style="font-size: 0.75rem; color: #60A5FA;">Undo ↶</span>
         </div>
 
         <div style="flex: 1; border-radius: 16px; overflow: hidden; position: relative;" class="checkerboard-pattern">
-          <img src="/assets/portrait.jpg" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+          <img src="/assets/slider/transparent.png" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
 
         <div style="display: flex; justify-content: space-around; margin-top: 14px; padding: 10px 0; background: rgba(0,0,0,0.4); border-radius: 12px; font-size: 0.72rem; color: #94A3B8;">
-          <span style="color: #60A5FA; font-weight: 700;">ðŸŽ¨ Background</span>
-          <span>âš¡ Adjust</span>
-          <span>âœ‚ï¸ Crop</span>
-          <span>âœ¨ More</span>
+          <span style="color: #60A5FA; font-weight: 700;">🎨 Background</span>
+          <span>⚡ Adjust</span>
+          <span>✂️ Crop</span>
+          <span>✨ More</span>
         </div>
       </div>
     `
@@ -184,7 +184,7 @@ const GALLERY_SCREENS = {
         </div>
 
         <div style="height: 180px; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, #2F6BFF, #FF4D8D); margin-bottom: 14px;">
-          <img src="/assets/portrait.jpg" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+          <img src="/assets/slider/transparent.png" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
 
         <div style="display: flex; gap: 8px; margin-bottom: 12px; font-size: 0.75rem;">
@@ -219,11 +219,11 @@ const GALLERY_SCREENS = {
         </div>
 
         <div style="flex: 1; border-radius: 16px; overflow: hidden; margin-bottom: 14px;" class="checkerboard-pattern">
-          <img src="/assets/portrait.jpg" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+          <img src="/assets/slider/transparent.png" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
 
         <div style="background: rgba(16, 185, 129, 0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.74rem; color: #34D399; margin-bottom: 12px; text-align: center;">
-          âœ“ Best Quality Setting (Full 4K Resolution)
+          ✓ Best Quality Setting (Full 4K Resolution)
         </div>
 
         <div style="display: flex; gap: 8px;">
@@ -246,7 +246,7 @@ const GALLERY_SCREENS = {
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; flex: 1; overflow-y: auto;">
           <div style="border-radius: 12px; overflow: hidden; background: #161D36; padding: 6px;">
             <div style="aspect-ratio: 1; border-radius: 8px; overflow: hidden;" class="checkerboard-pattern">
-              <img src="/assets/portrait.jpg" style="width: 100%; height: 100%; object-fit: cover; clip-path: url(#portrait-mask);">
+              <img src="/assets/slider/transparent.png" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.68rem; color: #94A3B8;">
               <span>Today</span>
@@ -305,7 +305,7 @@ const GALLERY_SCREENS = {
 
         <div style="margin-top: auto; text-align: center; font-size: 0.7rem; color: #64748B;">
           ClearCut v1.2.0 (Build 42)<br>
-          "Free â€¢ Offline â€¢ On Your Device"
+          "Free &bull; Offline &bull; On Your Device"
         </div>
       </div>
     `
@@ -313,7 +313,7 @@ const GALLERY_SCREENS = {
 };
 
 // ===================================================================
-// Skiper UI (@skiper-ui) Interactions â€” defined first to prevent ReferenceError
+// Skiper UI (@skiper-ui) Interactions — defined first to prevent ReferenceError
 // ===================================================================
 function initSkiperGallery() {
   const cards = document.querySelectorAll('.skiper-expand-card');
@@ -363,19 +363,40 @@ function initNavbar() {
 
   // Mobile menu toggle
   if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
+    const closeMenu = () => {
+      navMenu.classList.remove('open');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    };
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = navMenu.classList.toggle('open');
       menuToggle.classList.toggle('active', isOpen);
       menuToggle.setAttribute('aria-expanded', isOpen);
+      document.body.classList.toggle('nav-open', isOpen);
     });
 
-    // Close when clicking any nav link
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
+    // Close when clicking any nav link or CTA button inside drawer
+    navMenu.querySelectorAll('.nav-link, a, button').forEach(item => {
+      item.addEventListener('click', () => {
+        closeMenu();
       });
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Close when resizing window to desktop view
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 868 && navMenu.classList.contains('open')) {
+        closeMenu();
+      }
     });
   }
 }
@@ -523,7 +544,7 @@ function initPlayground() {
           canvas.style.display = 'none';
           img.style.display = 'block';
           img.src = preset.src;
-          img.style.clipPath = preset.mask;
+          img.style.clipPath = (preset.mask && preset.mask !== 'none') ? preset.mask : 'none';
           triggerScan();
         }
       });
@@ -731,7 +752,7 @@ function initPlayground() {
           link.href = img.src;
         }
         link.click();
-        showToast('âœ“ Cutout exported successfully! Full HD quality.');
+        showToast('✓ Cutout exported successfully! Full HD quality.');
       }, 500);
     });
   }
@@ -944,8 +965,8 @@ function initModals() {
   if (confirmPlayStoreBtn) {
     confirmPlayStoreBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      // App is coming soon on Play Store â€“ let user know & offer direct APK
-      showToast('ðŸš€ Coming soon on Google Play! Use the direct download for now.');
+      // App is coming soon on Play Store – let user know & offer direct APK
+      showToast('🚀 Coming soon on Google Play! Use the direct download for now.');
     });
   }
 
@@ -953,7 +974,7 @@ function initModals() {
     confirmApkDownloadBtn.addEventListener('click', () => {
       // Native <a download> handles the actual file download
       confetti({ particleCount: 70, spread: 80 });
-      showToast('âœ“ Download started! Allow installs from unknown sources if prompted.');
+      showToast('✓ Download started! Allow installs from unknown sources if prompted.');
       closeAllModals();
     });
   }
